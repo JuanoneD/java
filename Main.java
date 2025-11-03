@@ -8,6 +8,9 @@ public class Main {
 
     public static ReceptyItem addItem()
     {
+        ScannerTerminal.getInstance().nextLine();
+        // limpar buffer pois estava pulando o input do nome do item
+
         System.out.println("Digite o nome do item:");
         String nome = ScannerTerminal.getInstance().nextLine();
 
@@ -19,8 +22,7 @@ public class Main {
 
         float subTotalValue = unitValue * quantity;
 
-        ReceptyItem item = new ReceptyItem(nome, unitValue, quantity, subTotalValue);
-        return item;
+        return new ReceptyItem(nome, unitValue, quantity, subTotalValue);
     }
 
     public static void main(String[] args) {
