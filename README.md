@@ -8,18 +8,11 @@ Padrões utilizados
 
 1. Singleton na Classe Scanner Terminal 
 
-public static Scanner getInstance() {
-    if (instance == null) {
-        instance = new Scanner(System.in);
-    }
-    return instance;
-}
-
 2. Dependency injection na Main
-ReceptHandle ReceptHandle = (choice == 1) ? new AllInfoRecept() : new ValueTotalOnly(); 
+    ReceptHandle ReceptHandle = (choice == 1) ? new AllInfoRecept() : new ValueTotalOnly(); 
 
 3. Factory Pattern na Main (Mesmo lugar que tem um Dependency injection)
-ReceptHandle ReceptHandle = (choice == 1) ? new AllInfoRecept() : new ValueTotalOnly();
+    ReceptHandle ReceptHandle = (choice == 1) ? new AllInfoRecept() : new ValueTotalOnly();
 
 Princípio SOLID: 
 
