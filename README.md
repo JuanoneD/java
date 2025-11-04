@@ -28,7 +28,7 @@ ReceptyHandle receptyHandle = (choice == 1) ?
 - **Objetivo:** Criação de objetos baseada em condições
 - **Benefício:** Centraliza lógica de criação
 
-## 🎯 Princípio SOLID: **Open/Closed Principle (OCP)**
+## Princípio SOLID: **Open/Closed Principle (OCP)**
 
 ### **Definição:**
 > "Classes devem estar abertas para extensão, mas fechadas para modificação."
