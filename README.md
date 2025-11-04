@@ -1,6 +1,5 @@
 Trabalho Java Terça
-Usei o java 17 para rodar
-
+Usei o java 17 para rodar no linux
 
 javac -cp . Main.java
 java Main
@@ -16,75 +15,38 @@ public static Scanner getInstance() {
     return instance;
 }
 
-2. Dependecy injection na Main
-ReceptyHandle receptyHandle = (choice == 1) ? new AllInfoRecepty() : new ValueTotalOnly(); 
+2. Dependency injection na Main
+ReceptHandle ReceptHandle = (choice == 1) ? new AllInfoRecept() : new ValueTotalOnly(); 
 
-### 3. **Factory Pattern (Implícito)**
-```java
-// No Main.java - criação baseada na escolha do usuário
-ReceptyHandle receptyHandle = (choice == 1) ? 
-    new AllInfoRecepty() : new ValueTotalOnly();
-```
-- **Objetivo:** Criação de objetos baseada em condições
-- **Benefício:** Centraliza lógica de criação
+3. Factory Pattern na Main (Mesmo lugar que tem um Dependency injection)
+ReceptHandle ReceptHandle = (choice == 1) ? new AllInfoRecept() : new ValueTotalOnly();
 
-## Princípio SOLID: **Open/Closed Principle (OCP)**
+Princípio SOLID: 
 
-### **Definição:**
-> "Classes devem estar abertas para extensão, mas fechadas para modificação."
+Open/Closed Principle (OCP)
+Definição:
+Classes devem estar abertas para extensão, mas fechadas para modificação.
 
-### **Implementação no Sistema:**
-
-**✅ ABERTO PARA EXTENSÃO:**
-```java
+ABERTO PARA EXTENSÃO:
 // Nova implementação pode ser criada facilmente
-public class MinimalRecepty implements ReceptyHandle {
+public class MinimalRecept implements ReceptHandle {
     @Override
-    public void generateRecepty(List<ReceptyItem> items) {
+    public void generateRecept(List<ReceptItem> items) {
         // Nova estratégia de recibo minimalista
     }
 }
-```
 
-**✅ FECHADO PARA MODIFICAÇÃO:**
-```java
+FECHADO PARA MODIFICAÇÃO:
 // O código principal não precisa ser alterado
 // Apenas adiciona a nova opção no switch/if
-ReceptyHandle receptyHandle = switch(choice) {
-    case 1 -> new AllInfoRecepty();
+ReceptHandle ReceptHandle = switch(choice) {
+    case 1 -> new AllInfoRecept();
     case 2 -> new ValueTotalOnly();
-    case 3 -> new MinimalRecepty();  // Nova implementação
+    case 3 -> new MinimalRecept();  // Nova implementação
     default -> throw new IllegalArgumentException();
 };
-```
 
-### **Benefícios do OCP:**
-- **Extensibilidade:** Novos tipos de recibo sem alterar código existente
-- **Manutenibilidade:** Mudanças isoladas em cada implementação
-- **Testabilidade:** Cada estratégia pode ser testada independentemente
-- **Flexibilidade:** Sistema cresce sem quebrar funcionalidades existentes
-
-## 📊 Outros Princípios SOLID Aplicados
-
-### **Single Responsibility Principle (SRP)**
-- `ReceptyItem`: Apenas representa dados do item
+Single Responsibility Principle (SRP)
+- `ReceptItem`: Apenas representa dados do item
 - `ScannerTerminal`: Apenas gerencia o Scanner
-- `ReceptyHandle`: Apenas define contrato de geração
-
-### **Dependency Inversion Principle (DIP)**
-- `Main` depende da abstração `ReceptyHandle`, não das implementações concretas
-- Facilita injeção de dependências e testes
-
-## 🛠️ Possíveis Melhorias
-
-1. **Implementar as funcionalidades** nos métodos `generateRecepty()`
-2. **Adicionar Factory Method** para criação das implementações
-3. **Implementar tratamento de erros** robusto
-4. **Adicionar logging** para auditoria
-5. **Criar testes unitários** para cada componente
-
-## 📚 Resumo dos Patterns
-- **Singleton:** Uma instância de Scanner para toda aplicação
-- **Strategy:** Diferentes formas de gerar recibos
-- **Factory:** Criação de objetos baseada em escolhas do usuário
-- **OCP:** Sistema extensível sem modificar código existente
+- `ReceptHandle`: Apenas define contrato de geração
