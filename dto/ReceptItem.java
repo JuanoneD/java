@@ -1,8 +1,8 @@
 package dto;
 
-public record ReceptyItem (
+public record ReceptItem (
     int id,
-    String nome,
+    String name,
     float unitValue,
     int quantity, 
     float subTotalValue

@@ -17,13 +17,13 @@ public static Scanner getInstance() {
 }
 
 2. Dependecy injection na Main
-ReceptyHandle receptyHandle = (choice == 1) ? new AllInfoRecepty() : new ValueTotalOnly(); 
+ReceptHandle ReceptHandle = (choice == 1) ? new AllInfoRecept() : new ValueTotalOnly(); 
 
 ### 3. **Factory Pattern (Implícito)**
 ```java
 // No Main.java - criação baseada na escolha do usuário
-ReceptyHandle receptyHandle = (choice == 1) ? 
-    new AllInfoRecepty() : new ValueTotalOnly();
+ReceptHandle ReceptHandle = (choice == 1) ? 
+    new AllInfoRecept() : new ValueTotalOnly();
 ```
 - **Objetivo:** Criação de objetos baseada em condições
 - **Benefício:** Centraliza lógica de criação
@@ -38,9 +38,9 @@ ReceptyHandle receptyHandle = (choice == 1) ?
 **✅ ABERTO PARA EXTENSÃO:**
 ```java
 // Nova implementação pode ser criada facilmente
-public class MinimalRecepty implements ReceptyHandle {
+public class MinimalRecept implements ReceptHandle {
     @Override
-    public void generateRecepty(List<ReceptyItem> items) {
+    public void generateRecept(List<ReceptItem> items) {
         // Nova estratégia de recibo minimalista
     }
 }
@@ -50,10 +50,10 @@ public class MinimalRecepty implements ReceptyHandle {
 ```java
 // O código principal não precisa ser alterado
 // Apenas adiciona a nova opção no switch/if
-ReceptyHandle receptyHandle = switch(choice) {
-    case 1 -> new AllInfoRecepty();
+ReceptHandle ReceptHandle = switch(choice) {
+    case 1 -> new AllInfoRecept();
     case 2 -> new ValueTotalOnly();
-    case 3 -> new MinimalRecepty();  // Nova implementação
+    case 3 -> new MinimalRecept();  // Nova implementação
     default -> throw new IllegalArgumentException();
 };
 ```
@@ -67,17 +67,17 @@ ReceptyHandle receptyHandle = switch(choice) {
 ## 📊 Outros Princípios SOLID Aplicados
 
 ### **Single Responsibility Principle (SRP)**
-- `ReceptyItem`: Apenas representa dados do item
+- `ReceptItem`: Apenas representa dados do item
 - `ScannerTerminal`: Apenas gerencia o Scanner
-- `ReceptyHandle`: Apenas define contrato de geração
+- `ReceptHandle`: Apenas define contrato de geração
 
 ### **Dependency Inversion Principle (DIP)**
-- `Main` depende da abstração `ReceptyHandle`, não das implementações concretas
+- `Main` depende da abstração `ReceptHandle`, não das implementações concretas
 - Facilita injeção de dependências e testes
 
 ## 🛠️ Possíveis Melhorias
 
-1. **Implementar as funcionalidades** nos métodos `generateRecepty()`
+1. **Implementar as funcionalidades** nos métodos `generateRecept()`
 2. **Adicionar Factory Method** para criação das implementações
 3. **Implementar tratamento de erros** robusto
 4. **Adicionar logging** para auditoria

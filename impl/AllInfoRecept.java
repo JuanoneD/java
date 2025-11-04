@@ -1,18 +1,17 @@
 package impl;
 
-import java.sql.SQLOutput;
 import java.util.List;
 
-import dto.ReceptyItem;
-import interfaces.ReceptyHandle;
+import dto.ReceptItem;
+import interfaces.ReceptHandle;
 
-public class AllInfoRecepty implements ReceptyHandle{
+public class AllInfoRecept implements ReceptHandle{
     @Override
-    public void generateRecepty(List<ReceptyItem> items) {
+    public void generateRecept(List<ReceptItem> items) {
         float total = 0;
 
-        for(ReceptyItem item: items){
-            System.out.println("Produto: " + item.nome());
+        for(ReceptItem item: items){
+            System.out.println("Produto: " + item.name());
             System.out.println("Valor: " + item.unitValue());
             System.out.println("Quantidade: " + item.quantity());
             System.out.println("SubTotal: " + item.subTotalValue());

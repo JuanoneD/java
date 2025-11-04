@@ -2,15 +2,15 @@ package impl;
 
 import java.util.List;
 
-import dto.ReceptyItem;
-import interfaces.ReceptyHandle;
+import dto.ReceptItem;
+import interfaces.ReceptHandle;
 
-public class ValueTotalOnly implements ReceptyHandle {
+public class ValueTotalOnly implements ReceptHandle {
     @Override
-    public void generateRecepty(List<ReceptyItem> items) {
+    public void generateRecept(List<ReceptItem> items) {
         float total = 0;
 
-        for (ReceptyItem item : items) {
+        for (ReceptItem item : items) {
             total += item.subTotalValue();
         }
 
