@@ -1,8 +1,9 @@
 Trabalho Java Terça
 Usei o java 17 para rodar no linux
 
-javac -cp . Main.java
-java Main
+mkdir out
+javac -d out -cp ./Main.java
+java -cp out Main
 
 Padrões utilizados
 
